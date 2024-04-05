@@ -1,4 +1,4 @@
-function create(pri,name,loc)
+function create(pri,name,loc,info)
 {
     // Create the section element
 var section = document.createElement("section");
@@ -39,6 +39,10 @@ section.appendChild(priceParagraph);
 // Create the buy button
 var buyButton = document.createElement("button");
 buyButton.textContent = "BUY";
+buyButton.id = info;
+buyButton.onclick = function(){
+    buyProperty(buyButton.id);
+}
 buyButton.style.backgroundColor = "green";
 section.appendChild(buyButton);
 
