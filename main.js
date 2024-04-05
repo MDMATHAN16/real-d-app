@@ -27,7 +27,7 @@ connect.addEventListener("click", async () => {
     
 
       // Create a contract instance using the ABI and contract address
-      const contractAddress = "0xA89A7986462F5B3BbCcA27B6DB899b43819329f8"; // Replace with the actual address 0x936a0788d061a001Ba4Ee975207C89644429F740
+      const contractAddress = "0xeb78481adE052f676D7c5bb9597A3AF19024AD1D"; // Replace with the actual address 0x936a0788d061a001Ba4Ee975207C89644429F740
       const ABI =[
         {
             "anonymous": false,
@@ -109,6 +109,11 @@ connect.addEventListener("click", async () => {
                     "internalType": "uint256",
                     "name": "_propertyId",
                     "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "mame",
+                    "type": "string"
                 }
             ],
             "name": "buyProperty",
@@ -256,9 +261,10 @@ async function registerProperty(){
     });
 }
 
-async function buyProperty(){
-    const pId=parseInt(document.getElementById('input_val3').value);
-        await contract.methods.buyProperty(pId).send({ from: ethereum.selectedAddress })
+async function buyProperty(val){
+        const pId=parseInt(document.getElementById('input_val3').value) || parseInt(val);
+        console.log(pId)
+        await contract.methods.buyProperty(pId,accountName).send({ from: ethereum.selectedAddress })
         .then(alert('transaction successful!'))
         .catch(alert('Error buying the property!!'));
 }
@@ -270,10 +276,11 @@ async function getPropertyDetails(){
         let l = res.length;
         for(let i=0;i<l;i++)
         {
-            create(res[i]['price'],res[i]['name'],res[i]['location']);
             console.log('name: ',res[i]['name'],' id : ',res[i]['id'],' location : ' ,res[i]['location'],' price : ',res[i]['price'],' owner : ',res[i]['owner']);
+            create(res[i]['price'],res[i]['name'],res[i]['location'],res[i]['id']);
         }
     }
     catch(err){
-    alert('Error fetching property details!!')}
+        console.log(err);
+    alert('Error')}
 }
