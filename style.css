@@ -58,7 +58,7 @@ section{
     display: inline-block;
     background-color: #fff;
     height: 390px;
-    width: 340px;
+    width: 380px;
     border: 2px solid black;
     margin: 20px;
     padding: 10px;
@@ -67,7 +67,7 @@ section{
 }
 img{
     min-height: 190px;
-    max-width: 365px;
+    max-width: 360px;
 }
 section > h1{
     color:rgba(19, 41, 40, 0.866);
